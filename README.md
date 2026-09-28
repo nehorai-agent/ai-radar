@@ -8,7 +8,7 @@ To publish an **already fact-checked** edition, write its article body as an HTM
 python3 scripts/publish.py YYYY-MM-DD /tmp/radar-edition.html 'כותרת המהדורה' 'משפט קצר שמחבר את הסיפורים'
 git add index.html archive.html editions/ scripts/ style.css
 git commit -m 'Publish radar YYYY-MM-DD'
-git push origin main
+git -c credential.helper='!gh auth git-credential' push https://github.com/nehorai-agent/ai-radar.git main
 ```
 
-Do not put private data, secrets, or unreviewed third-party HTML in a public repository. The script only blocks obvious active tags; it does not sanitize all HTML. Confirm published URL and render on a narrow mobile viewport after pushing. For the first publish, enable GitHub Pages in repository Settings → Pages, source Deploy from a branch, main / (root). GitHub Pages deployment is not immediate.
+Do not put private data, secrets, or unreviewed third-party HTML in a public repository. The script only blocks obvious active tags; it does not sanitize all HTML. Confirm published URL and render on a narrow mobile viewport after pushing. GitHub Pages is already enabled from `main` / `(root)`. After pushing, confirm the build succeeds and the edition appears on the live site. A new task workspace must run `gh auth login --hostname github.com --git-protocol https --web` and authorize the device code in the saved nehorai-agent browser session; login tokens must never be copied into chat or shell text.
